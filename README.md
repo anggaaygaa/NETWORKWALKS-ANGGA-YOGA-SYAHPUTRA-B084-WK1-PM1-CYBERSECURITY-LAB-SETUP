@@ -43,10 +43,11 @@ Windows laptop (host)
 
 | Item | Value |
 |---|---|
-| Host OS | Windows 11 |
-| Host RAM / CPU | 8 GB RAM / AMD Ryzen 5 3500U |
-| VirtualBox | 7.2.x |
-| Kali Linux | 2026.3 (pre-built VirtualBox image) |
+| Host Device | ASUS ExpertBook L1400CDA |
+| Host OS | Windows 11 Home Single Language (64-bit) |
+| Host RAM / CPU | 8 GB RAM / AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx (4 Cores, 8 Threads) |
+| VirtualBox | 7.2.22 r175245 (with Extension Pack 7.2.22) |
+| Kali Linux | 2026.3 (pre-built VirtualBox image `kali-linux-2026.3-virtualbox-amd64`) |
 | VM resources | 2 CPUs, 2048 MB RAM, ~80 GB virtual disk |
 | Network adapter | Intel PRO/1000 MT Desktop on NAT Network |
 
@@ -55,7 +56,7 @@ Windows laptop (host)
 ## 4. How I Did It
 
 ### 4.1 Tools
-I installed **7-Zip** (to extract the compressed `.7z` Kali Linux VirtualBox archive) and **Oracle VirtualBox**.
+I installed **7-Zip 26.05 (x64)** (`7z2605-x64.exe`) to extract the compressed `kali-linux-2026.3-virtualbox-amd64.7z` archive, followed by **Oracle VirtualBox 7.2.22** (`VirtualBox-7.2.22-175245-Win.exe`) and the matching **Oracle VirtualBox Extension Pack 7.2.22** (`Oracle_VirtualBox_Extension_Pack-7.2.22.vbox-extpack`).
 
 ![VirtualBox Manager](1-screenshot-virtualbox.png)
 
@@ -106,7 +107,7 @@ sudo nmcli connection modify "Wired connection 1" \
 sudo nmcli connection up "Wired connection 1"
 ```
 
-Setting `ipv4.dad-timeout 0` disables Duplicate Address Detection wait time, which resolves a common issue where static IP configurations lose Internet access on VirtualBox 7 with newer Kali releases.
+Setting `ipv4.dad-timeout 0` disables Duplicate Address Detection wait time, which resolves a common issue where static IP configurations lose Internet access on VirtualBox 7.2.22 with newer Kali releases.
 
 ### 4.6 Snapshot
 Once all configurations and connectivity checks succeeded, I took a clean baseline snapshot named `Fresh Kali - IP 10.0.0.2 - Internet OK` so I can restore the machine to this verified state at any time.
